@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="../../styles/style.css?<?=rand(1,100000000)?>">
+</head>
+<body>
+<div class="content">
+    <div class="body">
+        <div class="header">
+            <nav class="menu">
+                <a class="link" href="/">Главная</a>
+                <a class="link" href="/info">Информация о сайте</a>
+                <a class="link" href="/about">О нас</a>
+                <a class="link" href="/user">Пользователи</a>
+            </nav>
+        </div>
+        <div class="main">
+            {% include content_template_name %}
+        </div>
+        <footer class="footer">
+            <p>© 2024 Все права защищены.</p>
+        </footer>
+    </div>
+    <div class="side_bar">
+
+    </div>
+</div>
+</body>
+</html>

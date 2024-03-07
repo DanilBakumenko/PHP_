@@ -78,16 +78,35 @@ class Bookshelf
         }
     }
 
-    public function findBook(string $name): bool
+    public function findBook(string $name): bool|PBook
     {
         foreach ($this->author as $books) {
             foreach ($books as $book) {
                 if ($book->getName() == $name) {
-                    return true;
+                    return $book;
                 }
             }
         }
         return false;
+    }
+
+    public function takeBook(string $name)
+    {
+        if ($this->findBook($name)){
+
+        }
+    }
+
+    public function deleteBook(string $name):void
+    {
+        $temp = $this->findBook($name);
+        if ($temp){
+            foreach ($this->author as $books){
+                if(in_array($temp,$books)){
+                    unset($books[$temp]);
+                }
+            }
+        }
     }
 
 }
@@ -150,5 +169,9 @@ $book3 = new PBook("ri am4", "pupa4", "12.12.2023", 34,"mira st. 75");
 $arr = [$book, $book1, $book2, $book3, $book4];
 $shelf = new Bookshelf($arr);
 
+$shelf-> deleteBook('zam3');
+
 //var_dump($shelf->getBooks());
-//var_dump($shelf->findBook("pupa1"));
+var_dump($shelf->getBooks());
+
+//if($book){echo "123";}
