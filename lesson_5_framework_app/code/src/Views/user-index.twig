@@ -5,3 +5,11 @@
         <li>{{ user.getUserName() }}. День рождения: {{ user.getUserBirthday() | date('d.m.Y') }}</li>
     {% endfor %}
 </ul>
+
+<form method="get" action="user/save/">
+    <label for="name">First name:</label>
+    <input type="text" id="name" name="name">
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="birthday">
+    <input type="submit">
+</form>

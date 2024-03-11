@@ -54,7 +54,15 @@ class __TwigTemplate_d30d87451f7614e2b9f6088d2a58bd69 extends Template
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 7
-        echo "</ul>";
+        echo "</ul>
+
+<form method=\"get\" action=\"user/save/\">
+    <label for=\"name\">First name:</label>
+    <input type=\"text\" id=\"name\" name=\"name\">
+    <label for=\"birthday\">Birthday:</label>
+    <input type=\"date\" id=\"birthday\" name=\"birthday\">
+    <input type=\"submit\">
+</form>";
     }
 
     public function getTemplateName()

@@ -1,22 +1,28 @@
 <?php
 
-namespace Geekbrains\Application1;
+namespace Geekbrains\Application1\Application;
 
-final class Application {
+use Exception;
+use Geekbrains\Application1\Infrastructure\Config;
+use Geekbrains\Application1\Infrastructure\Storage;
 
-    private const APP_NAMESPACE = 'Geekbrains\Application1\Controllers\\';
+class Application {
+
+    private const APP_NAMESPACE = 'Geekbrains\Application1\Domain\Controllers\\';
 
     private string $controllerName;
     private string $methodName;
-    static private array $config;
 
-    public static function config():array
-    {
-        return Application::$config;
+    public static Config $config;
+
+    public static Storage $storage;
+
+    public function __construct(){
+        Application::$config = new Config();
+        Application::$storage = new Storage();
     }
 
     public function run() : string {
-        Application::$config = parse_ini_file('config.ini',true);
         $routeArray = explode('/', $_SERVER['REQUEST_URI']);
 
         if(isset($routeArray[1]) && $routeArray[1] != '') {
@@ -47,19 +53,11 @@ final class Application {
                 );
             }
             else {
-                header($_SERVER["SERVER_PROTOCOL"]."404 Not found.",false,404);
-                header("Location: /error-page.html");
-                die();
+                throw new Exception("Метод " .  $this->methodName . " не существует");
             }
         }
         else{
-            header($_SERVER["SERVER_PROTOCOL"]."404 Not Found",true,404);
-            header("Location: /error-page.html");
-            die();
+            throw new Exception("Класс $this->controllerName не существует");
         }
-    }
-
-    public function render(array $pageVariables) {
-        
     }
 }
