@@ -13,7 +13,7 @@ class UserController {
         $render = new Render();
 
         if(!$users){
-            return $render->renderPage(
+            return $this->actionEdit().$render->renderPage(
                 'user-empty.twig',
                 [
                     'title' => 'Список пользователей в хранилище',
@@ -54,7 +54,7 @@ class UserController {
     public function actionUpdate(): string {
         if(User::exists($_GET['id'])) {
             $user = new User();
-            $user->setUserId($_GET['id']);
+
 
             $arrayData = [];
 
@@ -96,5 +96,13 @@ class UserController {
         }
     }
 
+    public function actionEdit():string
+    {
+        $render = new Render();
+
+        return $render->renderPageWithForm('user-form.twig',[
+            'title' => 'Форма для создания пользователей!'
+        ]);
+    }
     
 }

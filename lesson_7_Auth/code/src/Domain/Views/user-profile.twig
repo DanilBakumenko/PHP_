@@ -1,0 +1,14 @@
+{% extends"user-form.twig" %}
+
+{% block action %}/user/update/{% endblock %}
+{% block id %} <input id="user-id" type="hidden" name="id" value="{{ user.getIdUser }}">{% endblock %}
+{% block name %}
+    {{ user.getUserName() }} изменить на ->
+{% endblock %}
+{% block lastname %}
+    {{ user.getUserLastName() }} изменить на ->
+{% endblock %}
+{% block birthday %}
+    {{ user.getUserBirthday() | date('d.m.Y') }} изменить на ->
+{% endblock %}
+
